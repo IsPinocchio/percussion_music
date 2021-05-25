@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        
+        .main {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-flow: row wrap;
+            align-items: stretch;
+            background-color: rgb(245, 245, 191);
+            overflow: hidden;
+        }
+        
+        .points {
+            flex-grow: 1;
+            height: 100px;
+            border: 1px solid black;
+            background-color: rgb(240, 185, 194);
+        }
+        
+        .newCircle {
+            position: absolute;
+            opacity: .7;
+            z-index: 2;
+            border-radius: 50%;
+        }
+    </style>
+    <!-- <script src="snap.svg-min.js"></script> -->
+
+</head>
+
+<body>
+    <div class="main" style="background-color: aqua;">
+        <div class="points p00"></div>
+        <div class="points"></div>
+        <div class="points"></div>
+        <div class="points"></div>
+    </div>
+    <script src="common.js"></script>
+    <script src="yyAnimation.js"></script>
+
+
+</body>
+
+</html>
