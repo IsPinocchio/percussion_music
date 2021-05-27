@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        
+        .main {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-flow: row wrap;
+            align-items: stretch;
+            background-color: rgb(245, 245, 191);
+            overflow: hidden;
+        }
+    </style>
+
+    <link rel="stylesheet" href="yy.css">
+    <!-- <link rel="stylesheet" href="lyk1.css"> -->
+
+    <!-- <script src="snap.svg-min.js"></script> -->
+
+</head>
+
+<body>
+    <div class="main" style="background-color: aqua;">
+        <button class="yy1" name="点击圆下落">yy1 点击圆下落</button>
+        <button class="lyk1" name="点击出现圆点并消失">lyk1 点击出现圆点并消失</button>
+        <button class="yy2" name='抖动字符'>yy2 字体抖动</button>
+        <button class=""></button>
+        <span class="yy2_char">duang~</span>
+        <span></span>
+        <span></span>
+    </div>
+    <!-- {yy1: 掉落圆; lyk1: 出现圆并消失; yy2: 字体抖动; bing1: 烟花绽放} -->
+    <script src="common.js"></script>
+    <script src="yy1.js"></script>
+    <script src="lyk1.js"></script>
+    <script src="yy2.js"></script>
+
+
+</body>
+
+</html>
