@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .yy_char {
+            display: none;
+            text-align: center;
+            font-family: 'Gilda Display', serif;
+            width: 100%;
+            height: 120px;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -60px;
+            right: 0;
+            animation: noise-3 1s linear infinite;
+        }
+        
+        @keyframes noise-3 {
+            0%,
+            3%,
+            5%,
+            42%,
+            44%,
+            100% {
+                opacity: 1;
+                -webkit-transform: scaleY(1);
+                transform: scaleY(1);
+            }
+            4.3% {
+                opacity: 1;
+                -webkit-transform: scaleY(1.7);
+                transform: scaleY(1.7);
+            }
+            43% {
+                opacity: 1;
+                -webkit-transform: scaleX(1.5);
+                transform: scaleX(1.5);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="yy_char">
+        123
+    </div>
+    <button>点击出现字符</button>
+    <script>
+        var yy_char = document.querySelector('.yy_char');
+        var btn = document.querySelector('button');
+        btn.onclick = function() {
+            yy_char.style.display = 'block';
+            //3000后消失
+
+            setTimeout(disappear, 500);
+
+            function disappear() {
+                console.log('1');
+
+                function disappear11(yy_char) {
+                    yy_char.style.display = 'none';
+                }
+                return disappear11(yy_char);
+            }
+        };
+    </script>
+</body>
+
+</html>
