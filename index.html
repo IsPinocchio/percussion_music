@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一组项目</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 100%;
+            height: 100%;
+            /* overflow: hidden; */
+        }
+        
+        .main {
+            /* main的宽高在common.js里自适应, 易改游戏区 */
+            position: relative;
+            display: flex;
+            flex-flow: row wrap;
+            align-items: stretch;
+            overflow: hidden;
+            background-image: linear-gradient(150deg, #9ac6f1, #6c917b, #748794, #a58b88, #dfb1f3);
+            background-size: 400%;
+            animation: bganimation 5s infinite;
+        }
+        
+        .main button {
+            opacity: 0;
+        }
+        
+        @keyframes bganimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .audio_part {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+        
+        .start {
+            position: fixed;
+            top: 400px;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            transform: translateX(-100px);
+            /* background-color: green; */
+            z-index: 3;
+        }
+        
+        .start .score {
+            display: block;
+            margin-top: 10px;
+            width: 100%;
+            height: 50%;
+            font-size: 50px;
+            opacity: .8;
+        }
+        
+        .start .btn {
+            display: block;
+            margin-top: 15px;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid rgb(243, 188, 188);
+            border-radius: 5px;
+            font-size: 30px;
+            background-color: rgba(157, 157, 236, .6);
+        }
+        
+        .start .space {
+            display: block;
+            position: absolute;
+            top: 180px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 100px;
+            text-align: center;
+            font-size: 70px;
+            color: seashell;
+            opacity: 0.6;
+        }
+    </style>
+
+    <link rel="stylesheet" href="yy.css">
+    <link rel="stylesheet" href="lyk.css">
+    <link rel="shortcut icon" href="#" />
+    <!-- <script src="snap.svg-min.js"></script> -->
+    </style>
+</head>
+
+
+<body>
+    <div class="main">
+        <button class="yy1" name="点击圆下落">yy1    点击圆下落</button>
+        <button class="lyk1" name="点击出现圆点并消失">lyk1    点击出现圆点并消失。。。。。</button>
+        <button class="yy2" name='抖动字符1'>yy2[0] 字体抖动1    duang~。。。</button>
+        <button class="yy2" name='抖动字符2'>yy2[1] 字体抖动2    铛。。。。</button>
+        <button class="yy2" name='抖动字符3'>yy2[2] 字体抖动3    🎶。。。。</button>
+        <button class="yy3">yy3【0】 背景切换    窗帘效果。。。。</button>
+        <button class="yy3">yy3【1】 背景切换    放大。。。。</button>
+        <button class="lyk2">lyk2 视觉放大框。。。。。.。。。。。。</button>
+        <div class="chars">
+            <span class="yy2_char">duang~</span>
+            <span class="yy2_char" style="top: 200px;
+            left: 300px;">铛</span>
+            <span class="yy2_char" style="top: 400px;
+            left: -100px;">🎶</span>
+        </div>
+    </div>
+
+    <!-- 这里是shade遮罩背景的DOM -->
+    <div id="shade">
+        <span></span><span></span><span></span>
+    </div>
+
+    <!-- 播放设置 -->
+    <div class="audio_part">
+        <audio class="bgm" src="bgm.m4a" @play="play" @pause="pause" muted="muted" controls autoplay loop></audio>
+        <audio class="na" src="na.m4a"></audio>
+        <audio class="ya" src="miuu.m4a"></audio>
+        <audio class="duang" src="a3.wav"></audio>
+        <audio class="duang" src="铛.wav"></audio>
+        <audio class="duang" src="te.m4a"></audio>
+        <audio class="haa audio_shade" src="ha.m4a"></audio>
+        <audio class="maa audio_shade" src="maa.m4a"></audio>
+        <audio class="clapping" src="掌声.mp3"></audio>
+    </div>
+
+    <!-- start -->
+    <div class="start">
+        <span class="score">000</span>
+        <botton class="btn">S T A R T!</botton>
+        <span class="space">按下空格开始</span>
+    </div>
+
+    <!-- {yy1: 掉落圆; lyk1: 出现圆并消失; yy2: 字体抖动; bing1: 烟花绽放} -->
+    <script src="common.js"></script>
+    <script src="yy1.js"></script>
+    <script src="lyk1.js"></script>
+    <script src="yy2.js"></script>
+    <script src="yy_shade.js"></script>
+    <script src="lyk2.js"></script>
+
+    <script>
+        let startPart = document.querySelector('.start');
+        let audio_bgm = document.querySelector('.bgm');
+        startPart.addEventListener('click', function() {
+            this.style.display = 'none';
+            audio_bgm.play();
+        });
+
+        document.addEventListener('keyup', function(e) {
+            // 空格ASCII码=32
+            if (e.keyCode === 32) {
+                startPart.style.display = 'none';
+                audio_bgm.play();
+            }
+        });
+    </script>
+</body>
+
+</html>

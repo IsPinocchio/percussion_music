@@ -1,0 +1,107 @@
+.newCircle {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+
+/* 抖动字符部分 */
+
+.yy2_char {
+    display: none;
+    position: absolute;
+    top: 400px;
+    left: 500px;
+    /* background-color: pink; */
+    text-align: center;
+    font-size: 120px;
+    font-family: 'Gilda Display', serif;
+    width: 100%;
+    height: 120px;
+    margin: auto;
+    animation: noise 1s linear infinite;
+}
+
+@keyframes noise {
+    0%,
+    3%,
+    5%,
+    42%,
+    44%,
+    100% {
+        opacity: .8;
+        transform: scaleY(1);
+    }
+    4.3% {
+        opacity: .7;
+        transform: scaleY(1.7);
+    }
+    43% {
+        opacity: .3;
+        transform: scaleX(1.5);
+    }
+}
+
+
+/* shade遮罩部分 */
+
+#shade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+}
+
+#shade span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 400vh;
+    height: 400vh;
+    border-radius: 50%;
+    background-color: rgb(68, 189, 38);
+    transform-origin: bottom left;
+    transform: scale(0);
+    transition: all 1s ease-in-out;
+    transform: rotate(90deg);
+}
+
+#shade span:nth-child(1) {
+    background-color: rgb(243, 200, 200);
+    /* transform: rotate(-90deg); */
+    transition-delay: 0.2s;
+}
+
+#shade span:nth-child(2) {
+    background-color: rgb(183, 168, 238);
+    /* transform: rotate(-90deg); */
+    transition-delay: 0.1s;
+}
+
+#shade span:nth-child(3) {
+    background-color: rgb(114, 109, 109);
+    /* transform: rotate(-90deg); */
+    transition-delay: 0s;
+}
+
+
+/* active为第一个动画状态事件 */
+
+#shade.active span {
+    transform: rotate(-90deg);
+}
+
+.main.active {
+    background-color: rgb(67, 68, 70);
+    background-image: none;
+}
+
+
+/* enlarge为第二个动画状态事件 */
+
+#shade.enlarge span {
+    transform: scale(1);
+}
